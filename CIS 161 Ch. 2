@@ -10,12 +10,10 @@ int main(void) {
    printf("Enter integer:\n");
    scanf("%d", &userInt);
    
-   printf("Enter double:\n"); // Note for later that this printf statement contains \n, a whitespace.
+   printf("Enter double:\n");
    scanf("%lf", &userDouble);
-       
-// scanf scans the whitespace from \n as your next input, requiring you to work around it.
-
-   printf("Enter character:\n");
+   
+   printf("Enter character:\n"); // scanf scans the whitespace from \n as your next input, requiring you to work around it.
    scanf(" %c", &userChar); // To resolve this, add a whitespace like so: " %c" and not "%c".
    
    printf("Enter string:\n");
@@ -25,7 +23,7 @@ int main(void) {
    
    printf("%s %c %lf %d\n", userString, userChar, userDouble, userInt);
    
-   int userDoubleToInt = (int)userDouble;
+   int userDoubleToInt = (int)userDouble; \\ Typecasting: putting (int) before a double "rounds" it to a whole number.
    
    printf("%lf cast to an integer is %d\n", userDouble, userDoubleToInt); 
    
