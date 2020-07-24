@@ -1,0 +1,46 @@
+#include <stdio.h>
+
+int main(void) {
+   int cash, dollars, quarters, dimes, nickels, pennies;
+
+   scanf("%d", &cash);
+   
+   if (!(cash <= 0)) {
+      
+   dollars = cash / 100;
+   cash %= 100;
+   
+   quarters = cash / 25;
+   cash %= 25;
+   
+   dimes = cash / 10;
+   cash %= 10;
+   
+   nickels = cash / 5;
+   cash %= 5;
+   
+   pennies = cash;
+   
+   if (dollars != 0) {
+      printf("%d %s", dollars, dollars == 1 ? "Dollar\n" : "Dollars\n");
+   }
+   if (quarters != 0) {
+   printf("%d %s", quarters, quarters == 1 ? "Quarter\n" : "Quarters\n");
+   }
+   if (dimes != 0) {
+      printf("%d %s", dimes, dimes == 1 ? "Dime\n" : "Dimes\n");
+   }
+   if (nickels != 0) {
+      printf("%d %s", nickels, nickels == 1 ? "Nickel\n" : "Nickels\n");
+   }
+   if (pennies != 0) {
+      printf("%d %s", pennies, pennies == 1 ? "Penny\n" : "Pennies\n");
+   }
+   //End of "if (dollars != 0) {...}   
+   }
+   else {
+      printf("No change\n");
+   }
+
+   return 0;
+}
