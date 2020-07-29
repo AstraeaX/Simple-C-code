@@ -1,0 +1,95 @@
+#include <stdio.h>
+#include <stdbool.h>
+
+int main(void) {
+
+   int players[5][2];
+   char choice;
+   int playerNumber;
+   
+   for (int i = 0; i < 5; i++) {
+         printf("Enter player %d's jersey number:\n", i + 1);
+         scanf("%d", &players[i][0]);
+         
+         printf("Enter player %d's rating:\n\n", i + 1);
+         scanf("%d", &players[i][1]);
+   }
+   
+   void ROSTER(void) {
+      printf("ROSTER\n");
+   for (int i = 0; i < 5; i++) {
+         printf("Player %d -- Jersey number: %d, Rating: %d\n", i + 1, players[i][0], players[i][1]);
+   }
+   }
+
+   void MENU(void) {
+      printf("\nMENU\n");
+      printf("u - Update player rating\n");
+      printf("a - Output players above a rating\n");
+      printf("r - Replace player\n");
+      printf("o - Output roster\n");
+      printf("q - Quit\n");
+      
+      printf("\nChoose an option:\n");
+      scanf(" %c", &choice);
+   }
+
+   ROSTER();
+   MENU();
+   
+      while (true) {
+         
+       if (choice == 'u') {
+          printf("Enter a jersey number:\n");
+          scanf("%d", &playerNumber);
+          printf("Enter a new rating for player:\n");
+          for (int i = 0; i < 5; i++) {
+             if (playerNumber == players[i][0]) {
+              scanf("%d", &playerNumber);
+              players[i][1] = playerNumber;
+             }  
+       }
+       MENU();  
+      } //End of option 'u'
+       
+       else if (choice == 'a') {
+          printf("Enter a rating:\n");
+          scanf("%d", &playerNumber);
+          printf("\nABOVE %d\n", playerNumber);
+          for (int i = 0; i < 5; i++) {
+             if (playerNumber < players[i][1]) {
+                printf("Player %d -- Jersey number: %d, Rating: %d\n", i + 1, players[i][0], players[i][1]);
+             }
+       }
+       MENU();
+       } //End of option 'a'
+       
+       else if (choice == 'r') {
+          printf("Enter a jersey number:\n");
+          scanf("%d", &playerNumber);
+          for (int i = 0; i < 5; i++) {
+             if (playerNumber == players[i][0]) {
+                printf("Enter a new jersey number:\n");
+                scanf("%d", &playerNumber);
+                players[i][0] = playerNumber;
+                printf("Enter a rating for the new player:\n");
+                scanf("%d", &playerNumber);
+                players[i][1] = playerNumber;
+             }
+       }
+       MENU();
+       } //End of option 'r'
+       
+       else if (choice == 'o') {
+        ROSTER(); 
+        MENU();
+       } // End of option 'o'
+       
+      else if (choice == 'q') {
+         return false;
+       } // End of option 'q'
+       
+      } //---------> End of while loop
+   
+   return 0;
+}
