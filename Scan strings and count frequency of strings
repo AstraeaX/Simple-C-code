@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <string.h>
+
+int main(void) {
+
+   int limit;
+   scanf("%d", &limit);
+   
+   char strings[limit][10];
+   int frequency[15];
+   
+   for (int i = 0; i < limit; i++) {
+      scanf("%s", strings[i]);
+   }
+   for (int i = 0; i < limit; i++) {
+      for (int j = 0; j < limit; j++) {
+         if (strcmp(strings[i], strings[j]) == 0) {
+            frequency[i]++;
+         }
+   }
+   }
+   
+   for (int i = 0; i < limit; i++) {
+    
+    printf("%s %d\n", strings[i], frequency[i]);
+      
+   }
+   
+   return 0;
+}
