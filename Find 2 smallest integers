@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <limits.h>
+
+int main(void) {
+
+   int limit;
+   scanf("%d", &limit);
+   
+   int low = INT_MAX;
+   int low2 = INT_MAX;
+   
+   int list[limit];
+   
+   for (int i = 0; i < limit; i++) {
+    scanf("%d", &list[i]);  
+   }
+   
+   for (int i = 0; i < limit; i++) {
+    if (list[i] < low) {
+     low = list[i];  
+    }
+   }
+   
+   for (int i = 0; i < limit; i++) {
+    if (list[i] > low && low2 > list[i]) {
+     low2 = list[i];  
+    }
+   }
+   
+   printf("%d %d\n", low, low2);
+
+   return 0;
+}
