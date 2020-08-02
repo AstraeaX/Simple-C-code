@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int GetNumOfCharacters(char usrStr[]) {
+
+   int x = 0;
+
+   for (int i = 0; i < strlen(usrStr) + 2; i++) {
+    if (!iscntrl(usrStr[i])) {
+     ++x;
+    }
+    if (usrStr[i] == '\n') {
+       ++x;
+    }
+   }
+
+   return x;
+   
+}
+
+void OutputWithoutWhitespace(char str[]) {
+ 
+     for (int i = 0; i < strlen(str); ++i) {
+    if (!isblank(str[i])) {
+      printf("%c", str[i]);
+    }
+   
+}
+printf("\n");
+}
+
+int main(void) {
+
+   char str[100];
+   
+   printf("Enter a sentence or phrase:\n");
+   int i = 0;
+   
+   for (i; i < 100; ++i) {
+    fgets(str, 100, stdin); // fgets won't ignore the newline character like scanf will
+   }
+   
+   printf("\nYou entered: %s\n", str);
+   
+   printf("Number of characters: %d\n", GetNumOfCharacters(str));
+   
+   printf("String with no whitespace: ");
+   OutputWithoutWhitespace(str);
+
+   return 0;
+}
