@@ -9,7 +9,7 @@ int main(void) {
    
    for (int i = 0; i < 10; i++) {
       scanf(" %[^\n]s", input[i]); \\ Scan a string with spaces until newline
-      if (strcmp(input[i], "quit") == 0 || strcmp(input[i], "q") == 0 || strcmp(input[i], "Quit") == 0 ) {
+      if (strcmp(input[i], "quit") == 0 || strcmp(input[i], "q") == 0 || strcmp(input[i], "Quit") == 0) {
          x = i;
         break;
       }
