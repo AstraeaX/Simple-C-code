@@ -1,0 +1,158 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+char* FixCapitalization(char str[]) {
+ 
+   str[0] = toupper(str[0]);
+   
+  for (int i = 0; i < strlen(str); ++i) {
+    if (str[i] == '.' && isspace(str[i+1])) {
+     for (int j = i; j < strlen(str); ++j) {
+      if (isalpha(str[j])) {
+         str[j] = toupper(str[j]);
+         ++i;
+         j = strlen(str);
+      }
+    }
+    }
+   }
+   
+   return str;
+}
+
+char* ReplaceExclamation(char str[]) {
+   
+   for (int i = 0; i < strlen(str); ++i ) {
+      
+      if (str[i] == '!') {
+       str[i] = '.';  
+      }
+      
+   }
+   
+   return str; 
+}
+
+char* ShortenSpace(char str[]) {
+   
+   int x = 0;
+   char str2[strlen(str)];
+   
+     for (int i = 0; i < strlen(str); ++i) {
+       if (str[i] == ' ' && str[i+1] == ' ') {
+          str2[x] = str[i];
+          for (int j = i; j < strlen(str); ++j) {
+             if (isalpha(str[j])) {
+             i = j - 1;
+             j = strlen(str);
+          }
+          }
+       }
+       else if (str[i] == ' ' && str2[x] != ' ') {
+       str2[x] = str[i];
+       }
+       else if (str[i] == ' ' && str2[x] != ' ') {
+       str2[x] = str[i];
+       }
+       else if (str[i] != ' ' && str2[i] != ' ') {
+          str2[x] = str[i];
+       }
+       if (str[i+1] == '\0') {
+          break;
+       }
+       ++x;
+     }
+   
+     for (int i = 0; i < strlen(str2); ++i) {
+        str[i] = str2[i];
+       }
+       str[strlen(str2)] = '\0';
+       
+       
+       return str;      
+}
+
+int GetNumOfWords (char str[]) {
+   
+   ShortenSpace(str);
+   int x = 0;
+
+   for (int i = 0; i <= strlen(str); ++i) {
+       if (isspace(str[i]) || str[i] == '\0') {
+          ++x;
+       }
+   }  
+   
+     return x;
+ }
+
+int GetNumOfNonWSCharacters (char str[]) {
+   int x = 0;
+   for (int i = 0; i < strlen(str); ++i) {
+    if (!isspace(str[i])) {
+     x++;  
+    }
+   }
+   
+   return x;
+}
+
+void printMenu(char str[]) {
+   char c;
+   
+      do {
+   printf("MENU\n");
+   printf("c - Number of non-whitespace characters\n");
+   printf("w - Number of words\n");
+   printf("f - Fix capitalization\n");
+   printf("r - Replace all !'s\n");
+   printf("s - Shorten spaces\n");
+   printf("q - Quit\n\n");
+   printf("Choose an option:\n");
+
+      scanf(" %c", &c);
+      
+      if (c == 'c') {
+       printf("Number of non-whitespace characters: %d\n", GetNumOfNonWSCharacters(str));
+      }
+      else if (c == 'w') {
+       printf("Number of words: %d\n", GetNumOfWords(str));
+      }
+      else if (c == 'f') {
+         printf("Edited text: %s\n", FixCapitalization(str));
+      }
+      else if (c == 'r') {
+         printf("Edited text: %s", ReplaceExclamation(str));
+      }
+      else if (c == 's') {
+         printf("Edited text: %s\n", ShortenSpace(str));
+      }
+      
+         } while (c != 'q');
+
+}
+
+int main(void) {
+
+   char str[250];
+   
+   printf("Enter a sample text:\n");
+   
+  /* int i = 0, c;
+  *  while ((c = getchar()) != EOF && c != '\n') {
+  *      str[i] = c;
+  *      i++;
+  *   }              // This code can also work as a replacement for scanf here
+  */
+
+   for (int i = 0; i < 250; ++i) {
+    scanf("%[^\n]c", &str[i]);
+      }
+   
+   printf("You entered: %s\n", str);
+   
+   printMenu(str);
+             
+   return 0;
+}
